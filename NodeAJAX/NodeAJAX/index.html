@@ -61,7 +61,11 @@
                     alert("Must fill in customer number");
                     return;
                 }
-                
+            
+                if (!confirm('Are you sure you want to delete this customer?')) {
+                    return;
+                }
+            
                 $.post("/delete_customer", {
                     cusID: document.getElementById("txtCusID").value,
                     first: document.getElementById("txtFirst").value,

@@ -62,6 +62,7 @@ app.post('/find_customer', (request, response) => {
 });
 
 app.post('/delete_customer', (request, response) => {
+    console.log(request.body);
     let postBody = request.body;
     console.log(postBody);
     let fs = require('fs');
