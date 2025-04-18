@@ -17,14 +17,47 @@ app.post('/get_customer', (request, response) => {
 
     console.log(postBody);
 
+    let ID = postBody.cusID;
+
     // save postBody in a txt file
     let fs = require('fs');
     let data = JSON.stringify(postBody);
-    fs.writeFile('file_new.txt', data, (err) => {
+    fs.writeFile('results/' +ID +'.txt', data, (err) => {
         if (err) throw err;
         console.log('It\'s saved!');
     });
   response.send(postBody);
+
+});
+
+app.post('/clear_customer', (request, response) => {
+    let postBody = request.body;
+    console.log(postBody);
+    response.send(postBody);
+});
+
+app.post('/find_customer', (request, response) => {
+    let ID = request.body.cusID;
+    let postBody = request.body;
+    console.log(postBody);
+    let fs = require('fs');
+    let resultsPath = 'results/';
+    let found = false;
+    fs.readdirSync(resultsPath).forEach(file => {
+        let fileContent = fs.readFileSync(resultsPath + file);
+        let data = JSON.parse(fileContent);
+        if (data.cusID == postBody.cusID) {
+            found = true;
+            response.send(data);
+            fs.writeFile('results/' +ID +'.txt', JSON.stringify(postBody), (err) => {
+                if (err) throw err;
+                console.log('It\'s saved!');
+            });
+        }
+    });
+    if (!found) {
+        response.send({error: 'No such customer'});
+    }
 
 });
 
