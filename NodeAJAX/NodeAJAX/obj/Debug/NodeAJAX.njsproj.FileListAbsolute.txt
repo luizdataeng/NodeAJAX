@@ -1,0 +1,18 @@
+C:\node_code\NodeAJAX\NodeAJAX\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Projects\Fan\Winter 2021\INFO3168\node_code\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsprojAssemblyReference.cache
+C:\Projects\Fan\Winter 2021\INFO3168\node_code\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.CoreCompileInputs.cache
+C:\Projects\Fan\Winter 2021\INFO3168\node_code\NodeAJAX\NodeAJAX\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Projects\Fan\Winter 2022\INFO3168\node_code\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.AssemblyReference.cache
+C:\Projects\Fan\Winter 2022\INFO3168\node_code\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.CoreCompileInputs.cache
+C:\Projects\Fan\Winter 2022\INFO3168\node_code\NodeAJAX\NodeAJAX\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Projects\Fan\Current Semester\Fall 2023\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.AssemblyReference.cache
+C:\Projects\Fan\Current Semester\Fall 2023\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.CoreCompileInputs.cache
+C:\Projects\Fan\Current Semester\Fall 2023\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Projects\Fan\Current Semester\Winter 2024\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.AssemblyReference.cache
+C:\Projects\Fan\Current Semester\Winter 2024\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.CoreCompileInputs.cache
+C:\Projects\Fan\Current Semester\Winter 2024\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Projects\Fan\Current Semester\Fall 2024\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.AssemblyReference.cache
+C:\Projects\Fan\Current Semester\Fall 2024\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.CoreCompileInputs.cache
+C:\Projects\Fan\Current Semester\Fall 2024\INFO6144\Examples\Node JS\NodeAJAX\NodeAJAX\bin\Microsoft.NodejsTools.WebRole.dll
+C:\node_code\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.AssemblyReference.cache
+C:\node_code\NodeAJAX\NodeAJAX\obj\Debug\NodeAJAX.njsproj.CoreCompileInputs.cache

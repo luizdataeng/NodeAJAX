@@ -1,0 +1,36 @@
+﻿<html>
+    <head>
+        <title>Node AJAX</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            // ***************************************************
+            // post Request event handler uses jQuery .post method
+            // to issue request and process response (callback)
+            function postRequest() {
+                $.post("/get_customer", {
+                    // this is the data being posted to the web server
+                    cusID: document.getElementById("txtCusID").value,
+                    first: document.getElementById("txtFirst").value,
+                    last: document.getElementById("txtLast").value,
+                    address: document.getElementById("txtAddress").value
+                },
+                // callback function returns status and data as object literal
+                function (data, status) {
+                    document.getElementById("txtFirst").value = data.first;
+                    document.getElementById("txtLast").value = data.last;
+                    document.getElementById("txtAddress").value = data.address;
+                });
+            }
+        </script>
+    </head>
+<body>
+    <input id="btnPost" type="button" onclick="postRequest();" value="Send an HTTP POST request to a page and get the results back" /><br><br>
+    Customer Number: <input type="text" name="txtCusID" id="txtCusID" style="position: absolute; left: 140px; top: 50px; width: 150px;"><br><br>
+    First Name: <input type="text" name="txtFirst" id="txtFirst"style="position: absolute; left: 140px; top: 85px; width: 150px;"><br><br>
+    Last Name: <input type="text" name="txtLast" id="txtLast" style="position: absolute; left: 140px; top: 120px; width: 150px;"><br><br>
+    Address: <input type="text" name="txtAddress" id="txtAddress" style="position: absolute; left: 140px; top: 155px; width: 150px;"><br><br>
+    City: <input type="text" name="txtCity" id="txtCity" style="position: absolute; left: 140px; top: 190px; width: 150px;"><br><br>
+    Province: <input type="text" name="txtProvince" id="txtProvince" style="position: absolute; left: 140px; top: 225px; width: 150px;"><br><br>
+    Postal: <input type="text" name="txtPostal" id="txtPostal" style="position: absolute; left: 140px; top: 260px; width: 150px;">
+</body>
+</html>

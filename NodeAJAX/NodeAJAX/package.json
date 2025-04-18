@@ -1,0 +1,13 @@
+{
+  "name": "node-ajax",
+  "version": "0.0.0",
+  "description": "NodeAJAX",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.17.3"
+  }
+}
