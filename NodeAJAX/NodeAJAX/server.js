@@ -61,6 +61,26 @@ app.post('/find_customer', (request, response) => {
 
 });
 
+app.post('/delete_customer', (request, response) => {
+    let postBody = request.body;
+    console.log(postBody);
+    let fs = require('fs');
+    let resultsPath = 'results/';
+    let found = false;
+    fs.readdirSync(resultsPath).forEach(file => {
+        let fileContent = fs.readFileSync(resultsPath + file);
+        let data = JSON.parse(fileContent);
+        if (data.cusID == postBody.cusID) {
+            found = true;
+            fs.unlinkSync(resultsPath + file);
+            response.send(data);
+        }
+    });
+    if (!found) {
+        response.send({error: 'No such customer'});
+    }
+});
+
 let port = process.env.PORT || 1337;
 
 // create the web server running on port 1337

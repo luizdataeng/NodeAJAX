@@ -56,10 +56,27 @@
                     postal: document.getElementById("txtPostal").value
                 });
             }
+            function deleteRequest() {
+                if (document.getElementById("txtCusID").value == "") {
+                    alert("Must fill in customer number");
+                    return;
+                }
+                
+                $.post("/delete_customer", {
+                    cusID: document.getElementById("txtCusID").value,
+                    first: document.getElementById("txtFirst").value,
+                    last: document.getElementById("txtLast").value,
+                    address: document.getElementById("txtAddress").value,
+                    city: document.getElementById("txtCity").value,
+                    province: document.getElementById("txtProvince").value,
+                    postal: document.getElementById("txtPostal").value
+                });
+            }
+
+
         </script>
     </head>
 <body>
-    <!--<input id="btnPost" type="button" onclick="postRequest();" value="Send an HTTP POST request to a page and get the results back" /><br><br>-->
     Customer Number: <input type="text" name="txtCusID" id="txtCusID" style="position: absolute; left: 140px; top: 10px; width: 150px;"><br><br>
     First Name: <input type="text" name="txtFirst" id="txtFirst"style="position: absolute; left: 140px; top: 45px; width: 150px;"><br><br>
     Last Name: <input type="text" name="txtLast" id="txtLast" style="position: absolute; left: 140px; top: 80px; width: 150px;"><br><br>
