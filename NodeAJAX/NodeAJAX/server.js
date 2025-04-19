@@ -12,22 +12,37 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (request, response) => response.sendFile(__dirname + "/index.html"));
 
 // create a handler (using an arrow function) for the HTTP POST request
-app.post('/get_customer', (request, response) => {
+app.post('/add_customer', (request, response) => {
     let postBody = request.body;
-
     console.log(postBody);
 
     let ID = postBody.cusID;
 
-    // save postBody in a txt file
     let fs = require('fs');
-    let data = JSON.stringify(postBody);
-    fs.writeFile('results/' +ID +'.txt', data, (err) => {
-        if (err) throw err;
-        console.log('It\'s saved!');
-    });
-  response.send(postBody);
+    let resultsPath = 'results/';
+    let found = false;
 
+    // Check if customer already exists
+    for (let file of fs.readdirSync(resultsPath)) {
+        let fileContent = fs.readFileSync(resultsPath + file);
+        let data = JSON.parse(fileContent);
+        if (data.cusID == postBody.cusID) {
+            found = true;
+            response.send({error: 'Customer already exists'});
+            return; // Stop further processing
+        }
+    }
+
+    // If not found, save the new customer
+    let data = JSON.stringify(postBody);
+    fs.writeFile('results/' + ID + '.txt', data, (err) => {
+        if (err) {
+            response.status(500).send({error: 'Failed to save customer'});
+            return;
+        }
+        console.log('It\'s saved!');
+        response.send(postBody);
+    });
 });
 
 app.post('/clear_customer', (request, response) => {

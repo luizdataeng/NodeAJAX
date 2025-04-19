@@ -19,7 +19,7 @@
             // post Request event handler uses jQuery .post method
             // to issue request and process response (callback)
             function postRequest() {
-                $.post("/get_customer", {
+                $.post("/add_customer", {
                     // this is the data being posted to the web server
                     cusID: document.getElementById("txtCusID").value,
                     first: document.getElementById("txtFirst").value,
@@ -31,13 +31,13 @@
                 },
                 // callback function returns status and data as object literal
                 function (data, status) {
-                    document.getElementById("txtCusID").value = data.cusID;
-                    document.getElementById("txtFirst").value = data.first;
-                    document.getElementById("txtLast").value = data.last;
-                    document.getElementById("txtAddress").value = data.address;
-                    document.getElementById("txtCity").value = data.city;
-                    document.getElementById("txtProvince").value = data.province;
-                    document.getElementById("txtPostal").value = data.postal;
+                    document.getElementById("txtCusID").value = "";
+                    document.getElementById("txtFirst").value = "";
+                    document.getElementById("txtLast").value = "";
+                    document.getElementById("txtAddress").value = "";
+                    document.getElementById("txtCity").value ="";
+                    document.getElementById("txtProvince").value = "";
+                    document.getElementById("txtPostal").value = "";
                 });
             }
             function updateRequest() {
