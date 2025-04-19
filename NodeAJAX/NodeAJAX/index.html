@@ -46,7 +46,7 @@
                     return;
                 }
                 
-                $.post("/find_customer", {
+                $.post("/update_customer", {
                     cusID: document.getElementById("txtCusID").value,
                     first: document.getElementById("txtFirst").value,
                     last: document.getElementById("txtLast").value,
@@ -74,10 +74,40 @@
                     city: document.getElementById("txtCity").value,
                     province: document.getElementById("txtProvince").value,
                     postal: document.getElementById("txtPostal").value
+                },
+                function (data, status) {
+                    document.getElementById("txtCusID").value = "";
+                    document.getElementById("txtFirst").value = "";
+                    document.getElementById("txtLast").value = "";
+                    document.getElementById("txtAddress").value = "";
+                    document.getElementById("txtCity").value = "";
+                    document.getElementById("txtProvince").value = "";
+                    document.getElementById("txtPostal").value = "";
                 });
             }
-
-
+            function findRequest() {
+                if (document.getElementById("txtCusID").value == "") {
+                    alert("Must fill in customer number");
+                    return;
+                }
+                
+                $.post("/find_customer", {
+                    cusID: document.getElementById("txtCusID").value
+                }, function (data, status) {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+                    document.getElementById("txtCusID").value = data.cusID;
+                    document.getElementById("txtFirst").value = data.first;
+                    document.getElementById("txtLast").value = data.last;
+                    document.getElementById("txtAddress").value = data.address;
+                    document.getElementById("txtCity").value = data.city;
+                    document.getElementById("txtProvince").value = data.province;
+                    document.getElementById("txtPostal").value = data.postal;
+                    console.log("id: " + data.cusID + " first: " + data.first + " last: " + data.last + " address: " + data.address + " city: " + data.city + " province: " + data.province + " postal: " + data.postal);
+                });
+            }
         </script>
     </head>
 <body>
@@ -93,6 +123,5 @@
     <input type="button" value="Update" onclick="updateRequest();" style="position: absolute; left: 170px; top: 260px; width: 60px; height: 30px;"/>
     <input type="button" value="Delete" onclick="deleteRequest();" style="position: absolute; left: 250px; top: 260px; width: 50px; height: 30px;"/>
     <input type="button" value="Find" onclick="findRequest();" style="position: absolute; left: 320px; top: 260px; width: 50px; height: 30px;"/>
-
 </body>
 </html>

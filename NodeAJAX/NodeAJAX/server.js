@@ -36,7 +36,7 @@ app.post('/clear_customer', (request, response) => {
     response.send(postBody);
 });
 
-app.post('/find_customer', (request, response) => {
+app.post('/update_customer', (request, response) => {
     let ID = request.body.cusID;
     let postBody = request.body;
     console.log(postBody);
@@ -61,6 +61,29 @@ app.post('/find_customer', (request, response) => {
 
 });
 
+app.post('/find_customer', (request, response) => {
+    let ID = request.body.cusID;
+    let postBody = request.body;
+    console.log(postBody);
+    let fs = require('fs');
+    let resultsPath = 'results/';
+    let found = false;
+    fs.readdirSync(resultsPath).forEach(file => {
+        let fileContent = fs.readFileSync(resultsPath + file);
+        let data = JSON.parse(fileContent);
+        if (data.cusID == postBody.cusID) {
+            found = true;
+            response.send(data);
+            console.log(data);
+            return;
+        }
+    });
+    if (!found) {
+        response.send({error: 'No such customer'});
+    }
+
+});
+
 app.post('/delete_customer', (request, response) => {
     console.log(request.body);
     let postBody = request.body;
@@ -75,6 +98,7 @@ app.post('/delete_customer', (request, response) => {
             found = true;
             fs.unlinkSync(resultsPath + file);
             response.send(data);
+            return;
         }
     });
     if (!found) {
