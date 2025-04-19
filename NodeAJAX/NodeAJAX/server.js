@@ -12,47 +12,47 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (request, response) => response.sendFile(__dirname + "/index.html"));
 
 // create a handler (using an arrow function) for the HTTP POST request
+// handle post request to add customer
 app.post('/add_customer', (request, response) => {
+    // read the posted data
     let postBody = request.body;
     console.log(postBody);
 
-    let ID = postBody.cusID;
-
-    let fs = require('fs');
-    let resultsPath = 'results/';
+    // check if customer already exists
     let found = false;
-
-    // Check if customer already exists
-    for (let file of fs.readdirSync(resultsPath)) {
-        let fileContent = fs.readFileSync(resultsPath + file);
+    fs.readdirSync('results/').forEach(file => {
+        let fileContent = fs.readFileSync('results/' + file);
         let data = JSON.parse(fileContent);
         if (data.cusID == postBody.cusID) {
             found = true;
             response.send({error: 'Customer already exists'});
             return; // Stop further processing
         }
-    }
-
-    // If not found, save the new customer
-    let data = JSON.stringify(postBody);
-    fs.writeFile('results/' + ID + '.txt', data, (err) => {
-        if (err) {
-            response.status(500).send({error: 'Failed to save customer'});
-            return;
-        }
-        console.log('It\'s saved!');
-        response.send(postBody);
     });
+
+    // if not found, save the new customer
+    if (!found) {
+        let data = JSON.stringify(postBody);
+        fs.writeFile('results/' + postBody.cusID + '.txt', data, (err) => {
+            if (err) {
+                response.status(500).send({error: 'Failed to save customer'});
+                return;
+            }
+            console.log('It\'s saved!');
+            response.send(postBody);
+        });
+    }
 });
 
+// handle post request to clear customer
 app.post('/clear_customer', (request, response) => {
     let postBody = request.body;
     console.log(postBody);
     response.send(postBody);
 });
 
+// handle post request to update customer
 app.post('/update_customer', (request, response) => {
-    let ID = request.body.cusID;
     let postBody = request.body;
     console.log(postBody);
     let fs = require('fs');
@@ -64,7 +64,7 @@ app.post('/update_customer', (request, response) => {
         if (data.cusID == postBody.cusID) {
             found = true;
             response.send(data);
-            fs.writeFile('results/' +ID +'.txt', JSON.stringify(postBody), (err) => {
+            fs.writeFile(resultsPath + postBody.cusID + '.txt', JSON.stringify(postBody), (err) => {
                 if (err) throw err;
                 console.log('It\'s saved!');
             });
@@ -76,8 +76,8 @@ app.post('/update_customer', (request, response) => {
 
 });
 
+// handle post request to find customer
 app.post('/find_customer', (request, response) => {
-    let ID = request.body.cusID;
     let postBody = request.body;
     console.log(postBody);
     let fs = require('fs');
@@ -96,9 +96,9 @@ app.post('/find_customer', (request, response) => {
     if (!found) {
         response.send({error: 'No such customer'});
     }
-
 });
 
+// handle post request to delete customer
 app.post('/delete_customer', (request, response) => {
     console.log(request.body);
     let postBody = request.body;
